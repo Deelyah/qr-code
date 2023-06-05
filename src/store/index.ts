@@ -6,7 +6,7 @@ export interface State {
   count: number;
 }
 
-// define injection key
+// @ts-ignore
 export const key: InjectionKey<Store<State>> = Symbol();
 
 export const store = createStore<State>({

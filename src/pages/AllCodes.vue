@@ -16,13 +16,18 @@
 <script lang="ts">
 import BaseCard from "../components/cards/BaseCard.vue";
 import { useStore } from "vuex";
-// import { store } from "../store";
 import { defineComponent, computed } from "vue";
+import { key } from '../store'
+
 export default defineComponent({
   name: "AllCodes",
+  components: {
+    BaseCard
+  },
   setup() {
-    const store = useStore();
+    const store = useStore(key);
     const count = computed(() => store.state.count);
+
     return {
       count,
     };
