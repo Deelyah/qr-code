@@ -11,6 +11,16 @@ export const key: InjectionKey<Store<State>> = Symbol();
 
 export const store = createStore<State>({
   state: {
-    count: 0,
+    generatedCodes: [],
+  },
+
+  mutations: {
+    createCode(state, payload: {}) {
+      console.log("first");
+
+      state.generatedCodes.push(payload);
+
+      console.log(state.generatedCodes);
+    },
   },
 });

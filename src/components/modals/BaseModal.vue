@@ -21,7 +21,7 @@
           required
           className="focus:outline-none border-transparent border-0 p-3"
           type="text"
-          placeholder="www.myqrcode.org"
+          placeholder="https://www.myqrcode.org"
           name="codeURL"
           v-model="codeURL"
         />
@@ -32,21 +32,47 @@
           Save
         </button>
       </div>
+      <p v-if="invalid" class="text-red-600 font-medium mt-2">
+        Link must contain http(s)!
+      </p>
+      <p v-if="fullStack" class="text-red-600 font-medium mt-2">
+        Refresh your page to add more codes!
+      </p>
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-let codeURL = ref<string | null>("");
+import { key } from "../../store";
+import { useStore } from "vuex";
 
+let store = useStore(key);
 let emit = defineEmits(["closeModal"]);
+
+let codeURL = ref<string | null>("");
+let invalid = ref<boolean>(false);
+let fullStack = ref<boolean>(false);
+const qrCodes = ref(store.state.generatedCodes);
 
 const handleClick = () => {
   emit("closeModal");
 };
+
 const handleSubmit = () => {
-  codeURL.value = "";
-  emit("closeModal");
+  if (qrCodes?.value?.length > 9) {
+    fullStack.value = true;
+  } else {
+    if (codeURL.value?.includes("http")) {
+      store.commit("createCode", { link: codeURL.value });
+      codeURL.value = "";
+      emit("closeModal");
+    } else {
+      setTimeout(() => {
+        invalid.value = false;
+      }, 3000);
+      invalid.value = true;
+    }
+  }
 };
 </script>

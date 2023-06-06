@@ -4,7 +4,9 @@
   >
     <div class="flex items-center">
       <img src="./assets/logo.svg" alt="logo" class="mr-2.5" />
-      <h3 class="text-gray-900 font-semibold text-lg">QR Generator</h3>
+      <router-link to="/" class="block">
+        <h3 class="text-gray-900 font-semibold text-lg">QR Generator</h3>
+      </router-link>
     </div>
     <div class="ml-auto hidden sm:flex">
       <PrimaryBtn
@@ -18,6 +20,19 @@
     </div>
 
     <BaseModal v-on:close-modal="toggleModal(false)" v-if="modalIsVisible" />
+  </nav>
+
+  <nav>
+    <div class="mt-24 flex sm:hidden px-4">
+      <PrimaryBtn btn-text="View All Codes" :is-primary="false" />
+      <div class="ml-3">
+        <PrimaryBtn
+          btn-text="+ Create"
+          :is-primary="true"
+          v-on:click="toggleModal(true)"
+        />
+      </div>
+    </div>
   </nav>
 </template>
 

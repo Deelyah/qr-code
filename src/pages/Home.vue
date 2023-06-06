@@ -1,39 +1,22 @@
 <template>
-  <div class="mt-8 px-4">
-    <h3 class="text-gray-900 font-medium text-2xl">Recent Codes</h3>
-    <div class="mt-4 flex">
-      <PrimaryBtn btn-text="View All Codes" :is-primary="false" />
-      <div class="ml-3">
-        <PrimaryBtn
-          btn-text="+ Create"
-          :is-primary="true"
-          v-on:click="toggleModal(true)"
-        />
-      </div>
+  <div class="mt-2 px-4 w-full h-[70vh] flex justify-center items-center">
+    <div
+      class="bg-white shadow-lg py-8 px-6 shadow-violet-500 flex flex-col justify-center"
+    >
+      <h3 class="mb-5 text-center font-medium text-xl">Hello there!</h3>
+      <p class="mb-3">Click the button above to quicly generate a QR-Code</p>
+      <p class="text-sm text-violet-950">Note:</p>
+      <p class="mt-2 text-sm text-violet-950">
+        Code links must be valid links containing 'http' or 'https'
+      </p>
+      <p class="mt-2 text-sm text-violet-950">
+        You can't generate more than 10 codes
+      </p>
+      <p class="mt-2 text-sm text-violet-950">
+        After 10 codes, kindly refresh your page to add more.
+      </p>
     </div>
-    <div class="flex flex-wrap w-full justify-center">
-      <div v-for="(_, index) in 6" class="basis-1/4 px-6">
-        <BaseCard
-          :key="index"
-          image="https://qrtag.net/api/qr_8.svg?url=https://www.github.com"
-        />
-      </div>
-    </div>
-
-    <BaseModal v-on:close-modal="toggleModal(false)" v-if="modalIsVisible" />
   </div>
 </template>
 
-<script setup lang="ts">
-import PrimaryBtn from "../components/buttons/PrimaryBtn.vue";
-import BaseCard from "../components/cards/BaseCard.vue";
-import BaseModal from "../components/modals/BaseModal.vue";
-import { ref } from "vue";
-
-const modalIsVisible = ref(false);
-
-const toggleModal = (value: boolean) => {
-  console.log(modalIsVisible.value);
-  modalIsVisible.value = value;
-};
-</script>
+<script setup lang="ts"></script>

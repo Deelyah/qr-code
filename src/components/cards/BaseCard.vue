@@ -4,7 +4,7 @@
     <div class="py-5 px-4 flex flex-col items-center">
       <!-- <slot></slot> -->
       <img :src="image" alt="qrtag" />
-      <div>Code One</div>
+      <div class="mt-2 font-medium">Link: {{ link }}</div>
     </div>
   </div>
 </template>
@@ -12,5 +12,6 @@
 <script setup lang="ts">
 defineProps<{
   image: string;
+  link: string;
 }>();
 </script>

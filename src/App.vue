@@ -5,7 +5,7 @@ import Layout from "./Layout.vue";
 
 <template>
   <Layout />
-  <div class="mt-20">
+  <div class="mt-6 sm:mt-20">
     <router-view />
   </div>
 </template>
